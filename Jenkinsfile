@@ -5,6 +5,8 @@ pipeline {
         stage('SSH'){
             steps{
                 echo 'connecting to server'
+            }
+            node{
             def remote = [:]
             remote.name = 'test'
             remote.host = '192.168.1.92'
