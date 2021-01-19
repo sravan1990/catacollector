@@ -5,13 +5,13 @@ pipeline {
         stage('SSH'){
             steps{
                 echo 'connecting to server'
-            }
             def remote = [:]
             remote.name = 'test'
             remote.host = '192.168.1.92'
             remote.user = 'pramod'
             remote.password = 'pramod'
             remote.allowAnyHosts = true
+            }
         }
         stage('Remote SSH') {
             writeFile file: 'abc.sh', text: 'ls -lrt'
