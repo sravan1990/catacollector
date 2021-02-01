@@ -1,0 +1,18 @@
+#!/bin/bash
+ls -1 /home/ >> /u01/app/oracle/test.csv
+
+cat <<EOT >> /u01/app/oracle/load1.ctl
+LOAD DATA
+INFILE '/u01/app/oracle/test.csv'
+
+TRUNCATE
+INTO TABLE testcsv
+fields terminated by ","
+(
+   file_name
+)
+EOT
+
+
+sqlldr userid=aurora/aurora  control='/u01/app/oracle/load1.ctl'
+rm -rf /u01/app/oracle/load1.ctl
